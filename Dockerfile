@@ -42,12 +42,12 @@ ADD http://jenkins.choderalab.org/userContent/AMD-APP-SDK-linux-v2.9-1.599.381-G
 RUN tar xjf AMD-APP-SDK-linux-v2.9-1.599.381-GA-x64.tar.bz2
 RUN ./AMD-APP-SDK-v2.9-1.599.381-GA-linux64.sh -- -s -a yes
 
-# Get Boost
+# Install Boost.
 ENV BOOST_PKG=boost_1_55_0 BOOST_SOURCE=$HOME/boost_1_55_0
 RUN wget --quiet http://downloads.sourceforge.net/project/boost/boost/1.55.0/boost_1_55_0.tar.bz2
 RUN tar xjf $BOOST_PKG.tar.bz2 $BOOST_PKG/libs/regex $BOOST_PKG/libs/filesystem $BOOST_PKG/libs/system $BOOST_PKG/libs/iostreams $BOOST_PKG/boost
 
-# Build OpenSSL
+# Build OpenSSL (already installed)
 #ENV OPENSSL_HOME=$HOME/openssl-1.0.2d
 #RUN wget https://www.openssl.org/source/openssl-1.0.2d.tar.gz
 #RUN tar zxf openssl-1.0.2d.tar.gz
