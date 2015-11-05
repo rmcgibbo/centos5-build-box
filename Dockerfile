@@ -1,6 +1,6 @@
 FROM phusion/holy-build-box-64
-# Install TeX, CUDA 7.0, AMD APP SDK 2.9-1
 
+# Install TeX, CUDA 7.0, AMD APP SDK 2.9-1
 
 ADD http://developer.download.nvidia.com/compute/cuda/7_0/Prod/local_installers/rpmdeb/cuda-repo-rhel6-7-0-local-7.0-28.x86_64.rpm .
 ADD http://jenkins.choderalab.org/userContent/AMD-APP-SDK-linux-v2.9-1.599.381-GA-x64.tar.bz2 .
@@ -9,11 +9,11 @@ ADD http://ctan.mackichan.com/systems/texlive/tlnet/install-tl-unx.tar.gz .
 ADD texlive.profile .
 
 RUN rpm -i --quiet epel-release-5-4.noarch.rpm && \
-    rm -rf /epel-release-5-4.noarch.rpm \
+    rm -rf epel-release-5-4.noarch.rpm && \
     yum install -y --quiet dkms libvdpau git wget &&  \
     tar -xzf install-tl-unx.tar.gz && \
-    cd install-tl-* &&  ./install-tl -profile texlive.profile && cd - && \
-    rm -rf install-tl-unx.tar.gz install-tl-* && \
+    cd install-tl-* &&  ./install-tl -profile /texlive.profile && cd - && \
+    rm -rf install-tl-unx.tar.gz install-tl-* texlive.profile && \
     rpm --quiet -i cuda-repo-rhel6-7-0-local-7.0-28.x86_64.rpm && \
     yum install -y --quiet cuda-core-7-0-7.0-28.x86_64 cuda-cufft-dev-7-0-7.0-28.x86_64 cuda-cudart-dev-7-0-7.0-28.x86_64 && \
     rpm --quiet --nodeps -Uvh /var/cuda-repo-7-0-local/xorg-x11-drv-nvidia-libs-346.46-1.el6.x86_64.rpm && \
