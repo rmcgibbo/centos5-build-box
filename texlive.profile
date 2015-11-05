@@ -43,8 +43,8 @@ collection-langpolish 0
 collection-langportuguese 0
 collection-langspanish 0
 collection-latex 1
-collection-latexextra 1
-collection-latexrecommended 1
+collection-latexextra 0
+collection-latexrecommended 0
 collection-luatex 0
 collection-mathextra 0
 collection-metapost 0

@@ -14,6 +14,9 @@ RUN rpm -i --quiet epel-release-5-4.noarch.rpm && \
     tar -xzf install-tl-unx.tar.gz && \
     cd install-tl-* &&  ./install-tl -profile /texlive.profile && cd - && \
     rm -rf install-tl-unx.tar.gz install-tl-* texlive.profile && \
+    tlmgr install cmap fancybox titlesec framed fancyvrb threeparttable \
+          mdwtools wrapfig parskip upquote float multirow hyphenat caption \
+          xstring && \
     rpm --quiet -i cuda-repo-rhel6-7-0-local-7.0-28.x86_64.rpm && \
     yum install -y --quiet cuda-core-7-0-7.0-28.x86_64 cuda-cufft-dev-7-0-7.0-28.x86_64 cuda-cudart-dev-7-0-7.0-28.x86_64 && \
     rpm --quiet --nodeps -Uvh /var/cuda-repo-7-0-local/xorg-x11-drv-nvidia-libs-346.46-1.el6.x86_64.rpm && \
