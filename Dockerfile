@@ -6,7 +6,7 @@ FROM phusion/holy-build-box-64
 #RUN yum upgrade -y --quiet ca-certificates --disablerepo=epel
 
 # Install prerequisites
-#RUN yum install -y --quiet wget clang gcc gcc-c++ git scons redhat-lsb kernel-devel dkms cmake doxygen
+RUN yum install -y --quiet wget clang gcc gcc-c++ git scons redhat-lsb kernel-devel dkms cmake doxygen
 
 # Install CUDA
 ENV CUDA_HOME=/usr/local/cuda-7.0 CUDA_LIBPATH=/usr/local/cuda-7.0/lib64
