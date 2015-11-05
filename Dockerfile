@@ -1,12 +1,12 @@
 FROM phusion/holy-build-box-64
 
 # Install EPL
-ADD http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm .
-RUN rpm -i --quiet epel-release-6-8.noarch.rpm
-RUN yum upgrade -y --quiet ca-certificates --disablerepo=epel
+#ADD http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm .
+#RUN rpm -i --quiet epel-release-6-8.noarch.rpm
+#RUN yum upgrade -y --quiet ca-certificates --disablerepo=epel
 
 # Install prerequisites
-RUN yum install -y --quiet wget clang gcc gcc-c++ git scons redhat-lsb kernel-devel dkms cmake doxygen
+#RUN yum install -y --quiet wget clang gcc gcc-c++ git scons redhat-lsb kernel-devel dkms cmake doxygen
 
 # Install CUDA
 ENV CUDA_HOME=/usr/local/cuda-7.0 CUDA_LIBPATH=/usr/local/cuda-7.0/lib64
