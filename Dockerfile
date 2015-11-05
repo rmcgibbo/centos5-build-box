@@ -14,7 +14,8 @@ RUN rpm -i --quiet epel-release-5-4.noarch.rpm && \
     tar -xzf install-tl-unx.tar.gz && \
     cd install-tl-* &&  ./install-tl -profile /texlive.profile && cd - && \
     rm -rf install-tl-unx.tar.gz install-tl-* texlive.profile && \
-    tlmgr install cmap fancybox titlesec framed fancyvrb threeparttable \
+    /usr/local/texlive/2015/bin/x86_64-linux/tlmgr install \
+          cmap fancybox titlesec framed fancyvrb threeparttable \
           mdwtools wrapfig parskip upquote float multirow hyphenat caption \
           xstring && \
     rpm --quiet -i cuda-repo-rhel6-7-0-local-7.0-28.x86_64.rpm && \
