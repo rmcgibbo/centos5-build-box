@@ -8,9 +8,14 @@ ADD http://download.fedoraproject.org/pub/epel/5/x86_64/epel-release-5-4.noarch.
 ADD http://ctan.mackichan.com/systems/texlive/tlnet/install-tl-unx.tar.gz .
 ADD texlive.profile .
 
+# CUDA requires dkms libvdpau
+# TeX installation requires wget
+# The other TeX packages installed with `tlmgr install` are required for OpenMM's sphinx docs
+# libXext libSM libXrender are required for matplotlib to work
+
 RUN rpm -i --quiet epel-release-5-4.noarch.rpm && \
     rm -rf epel-release-5-4.noarch.rpm && \
-    yum install -y --quiet dkms libvdpau git wget &&  \
+    yum install -y --quiet dkms libvdpau git wget libXext libSM libXrender &&  \
     tar -xzf install-tl-unx.tar.gz && \
     cd install-tl-* &&  ./install-tl -profile /texlive.profile && cd - && \
     rm -rf install-tl-unx.tar.gz install-tl-* texlive.profile && \
@@ -25,7 +30,7 @@ RUN rpm -i --quiet epel-release-5-4.noarch.rpm && \
     ln -s /usr/include/nvidia/GL/  /usr/local/cuda-7.0/include/ && \
     yum clean -y --quiet expire-cache && \
     yum clean -y --quiet all && \
-    rm -rf /cuda-repo-rhel6-7-0-local-7.0-28.x86_64.rpm /var/cuda-repo-7-0-local/ /var/cache/yum/cuda-7-0-local/ && \
+    rm -rf /cuda-repo-rhel6-7-0-local-7.0-28.x86_64.rpm /var/cuda-repo-7-0-local/*.rpm /var/cache/yum/cuda-7-0-local/ && \
     tar xjf AMD-APP-SDK-linux-v2.9-1.599.381-GA-x64.tar.bz2 && \
     ./AMD-APP-SDK-v2.9-1.599.381-GA-linux64.sh -- -s -a yes && \
     rm -rf  /AMD-APP-SDK-v2.9-1.599.381-GA-linux64.sh /AMD-APP-SDK-linux-v2.9-1.599.381-GA-x64.tar.bz2 && \
